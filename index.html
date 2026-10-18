@@ -164,6 +164,7 @@ a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 .state { align-self: flex-start; font-size: 13px; font-weight: 700; letter-spacing: .03em; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
 .state.ok { background: var(--ok-soft); color: var(--ok); }
 .state.new { color: var(--red-ink); box-shadow: inset 0 0 0 1px currentColor; }
+.state.opt { color: var(--muted); box-shadow: inset 0 0 0 1px var(--line); }
 .top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 8px 12px; }
 .feature { grid-column: 1 / -1; border: 0; border-top: 4px solid var(--red); border-radius: 0 0 14px 14px; background: var(--soft); padding: 22px 22px 20px; gap: 12px; }
 .feature h3 { font-size: clamp(24px, 3.4vw, 30px); }
@@ -172,6 +173,15 @@ a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 .flow { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 2px 0 0; font-size: 15px; }
 .flow li { padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); }
 .flow li + li::before { content: "→ "; color: var(--red-ink); }
+.feature.hl { background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); }
+.hl-kicker { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--red-ink); }
+.vj { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 4px 0 2px; }
+.vj > div { border-radius: 12px; padding: 12px 14px; background: var(--soft); min-width: 0; }
+.vj b { display: block; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; color: var(--muted); }
+.vj .jetzt { background: var(--ok-soft); }
+.vj .jetzt b { color: var(--ok); }
+.vj p { font-size: 15px; color: var(--ink); margin: 0; }
+@media (max-width: 760px) { .vj { grid-template-columns: 1fr; } }
 .rel-legend { display: flex; flex-wrap: wrap; gap: 10px 18px; }
 
 footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center; }
@@ -242,10 +252,10 @@ footer a { color: var(--ink); text-decoration-color: var(--red); text-underline-
       <p>Seit dem 9. Oktober läuft Amo komplett auf dem eigenen Rechner. Alle drei Zielwerte sind zwei Wochen vor dem geplanten Termin erreicht.</p>
     </div>
     <ul class="done-grid">
+      <li class="done"><h3>Amo als eigenes Programm</h3><p>Eigenes Fenster mit eigenem Symbol. Ein Doppelklick startet alles, danach hört Amo sofort zu. Ganz ohne Chrome.</p><span class="when">seit 18.10.</span></li>
       <li class="done"><h3>Termine per Sprache in Outlook</h3><p>Ein Satz reicht. Amo fragt kurz nach und speichert den Termin selbst im neuen Outlook.</p><span class="when">seit 16.10.</span></li>
       <li class="done"><h3>Zielwerte vor dem Plan</h3><p>97 % richtige Aktionen, 1,34 s Antwortzeit, 100 % Sicherheit. Geplant war der 30.10.</p><span class="when">gemessen am 16.10.</span></li>
-      <li class="done"><h3>PC per Stimme steuern</h3><p>Programme, Webseiten, Fenster, Lautstärke, Musik und Dateien. Häufige Befehle ohne Sprachmodell in Millisekunden.</p><span class="when">seit 09.10.</span></li>
-      <li class="done"><h3>Läuft lokal, ohne Cloud</h3><p>Spracherkennung, Sprachmodell und Stimme laufen auf der eigenen Grafikkarte. Keine Kosten pro Anfrage.</p><span class="when">seit 09.10.</span></li>
+      <li class="done"><h3>PC per Stimme, komplett lokal</h3><p>Programme, Webseiten, Fenster, Lautstärke, Musik und Dateien. Alles läuft auf der eigenen Grafikkarte, ohne Cloud und ohne Kosten pro Anfrage.</p><span class="when">seit 09.10.</span></li>
       <li class="done"><h3>Sicher vor jeder Aktion</h3><p>Prüfung im Code, Rückfrage bei riskanten Aktionen und ein Protokoll, in dem nachträgliche Änderungen auffallen.</p><span class="when">seit 14.10.</span></li>
       <li class="done"><h3>Dokumente und Videos</h3><p>Word, PowerPoint und Notizen im WAMOCON-Design. YouTube-Videos nach Kanal und Titel starten.</p><span class="when">seit 14.10.</span></li>
     </ul>
@@ -259,7 +269,7 @@ footer a { color: var(--ink); text-decoration-color: var(--red); text-underline-
     <ol class="steps">
       <li class="step">
         <time datetime="2026-10-23">23.10.<small>KW 43</small></time>
-        <div><h3>Neue Funktionen im Alltag testen</h3><p>Weckwort „Amo“, knappe Antworten, „Guten Morgen“, Erinnerung vor Terminen und Mail-Entwürfe. Was im Test hält, wird hier als bestätigt markiert.</p></div>
+        <div><h3>Neue Funktionen im Alltag testen</h3><p>Webseiten-Tabs schließen, „Schließ es wieder“, knappe Antworten, „Guten Morgen“, Erinnerung vor Terminen und Mail-Entwürfe. Was im Test hält, wird hier als bestätigt markiert.</p></div>
         <span class="pill work">in Arbeit</span>
       </li>
       <li class="step">
@@ -309,8 +319,18 @@ footer a { color: var(--ink); text-decoration-color: var(--red); text-underline-
       </div>
       <div class="hm-row" role="row">
         <div role="cell"><span class="lbl">Herausforderung</span><b>Gespräche im Raum lösten Aktionen aus</b><span>Ein falsch erkanntes Wort öffnete einmal eine Webseite.</span></div>
-        <div role="cell"><span class="lbl">Maßnahme</span>Weckwort „Amo“ im Code und ein Filter für typische Fehlerkennungen der Spracherkennung.</div>
-        <div role="cell"><span class="lbl">Lösung und Stand</span><span class="res">Eingebaut, Test im Alltag läuft.</span><span class="pill work">im Test</span></div>
+        <div role="cell"><span class="lbl">Maßnahme</span>Filter für typische Fehlerkennungen. Dazu ein Weckwort „Amo“ zum Einschalten.</div>
+        <div role="cell"><span class="lbl">Lösung und Stand</span><span class="res">Weckwort ist optional. Im Alltag störte es mehr, als es half.</span><span class="pill work">im Test</span></div>
+      </div>
+      <div class="hm-row" role="row">
+        <div role="cell"><span class="lbl">Herausforderung</span><b>Amo hielt Webseiten für Programme</b><span>„Schließ YouTube“ suchte ein Programm. „Schließ Chrome“ ging gar nicht.</span></div>
+        <div role="cell"><span class="lbl">Maßnahme</span>Amo erkennt Webseiten und schließt nur den passenden Tab. Er merkt sich, was er zuletzt geöffnet hat.</div>
+        <div role="cell"><span class="lbl">Lösung und Stand</span><span class="res">Eingebaut am 18.10., Test am PC läuft.</span><span class="pill work">im Test</span></div>
+      </div>
+      <div class="hm-row" role="row">
+        <div role="cell"><span class="lbl">Herausforderung</span><b>Amo startete manchmal stumm</b><span>Das Mikrofon blieb nach dem Start aus. Amo hörte nichts und antwortete nicht.</span></div>
+        <div role="cell"><span class="lbl">Maßnahme</span>Beim Start bis zu drei Versuche, das Mikrofon einzuschalten. Hört Amo 20 Sekunden nur Stille, nennt er das Gerät. Jeder Fehler landet im Log.</div>
+        <div role="cell"><span class="lbl">Lösung und Stand</span><span class="res">Eingebaut am 18.10., Test am PC läuft.</span><span class="pill work">im Test</span></div>
       </div>
       <div class="hm-row" role="row">
         <div role="cell"><span class="lbl">Herausforderung</span><b>Amo redete zu lang</b><span>Rückfragen mit über 300 Zeichen, Antworten mit drei Sätzen.</span></div>
@@ -387,6 +407,41 @@ footer a { color: var(--ink); text-decoration-color: var(--red); text-underline-
       <p>Nur größere Funktionen, neueste zuerst. Jede Funktion zeigt den Satz, den man zu Amo sagt.</p>
       <div class="rel-legend"><span class="state ok">Im Alltag bestätigt</span><span class="state new">Neu, wird getestet</span></div>
     </div>
+    <section class="release" aria-labelledby="r1018">
+    <div class="when">
+      <time id="r1018" datetime="2026-10-18">18.10.2026</time>
+      <span class="theme">Eigenes Programm, Amo versteht Zusammenhänge</span>
+    </div>
+    <div class="items">
+      <article class="item feature hl">
+        <span class="hl-kicker">Highlight</span>
+        <div class="top"><h3>Amo versteht, was gemeint ist</h3><span class="state new">Neu</span></div>
+        <p>Amo unterscheidet jetzt Webseiten und Programme. YouTube ist ein Tab in Chrome, also schließt Amo nur diesen Tab. Chrome und die anderen Tabs bleiben offen. Amo merkt sich außerdem, was er zuletzt geöffnet hat. „Schließ es wieder“ reicht.</p>
+        <div class="vj">
+          <div><b>Vorher</b><p>„Schließ YouTube“: „Kein laufendes Programm youtube gefunden.“ Auch „Schließ Chrome“ ging nicht.</p></div>
+          <div class="jetzt"><b>Jetzt</b><p>„Schließ YouTube“: nur der YouTube-Tab geht zu. „Schließ Chrome“ schließt Chrome.</p></div>
+        </div>
+        <span class="say">„Öffne YouTube.“ … „Schließ es wieder.“</span>
+        <ul class="flow" aria-label="Ablauf">
+          <li>Webseite oder Programm?</li><li>passenden Tab finden</li><li>prüfen, dass er vorne ist</li><li>nur diesen Tab schließen</li>
+        </ul>
+      </article>
+      <article class="item feature">
+        <div class="top"><h3>Amo ist ein eigenes Programm</h3><span class="state ok">Im Alltag bestätigt</span></div>
+        <p>Amo läuft nicht mehr im Chrome-Fenster. Er hat ein eigenes Fenster mit eigenem Symbol und steht im Startmenü. Nach dem Öffnen hört er sofort zu, ohne Klick auf Start. Schließt du das Fenster, hört Amo weiter zu. Das Symbol neben der Uhr holt ihn zurück, schaltet stumm oder beendet ihn.</p>
+        <span class="say">Doppelklick auf Amo, dann einfach losreden.</span>
+        <ul class="flow" aria-label="Ablauf">
+          <li>Amo öffnen</li><li>startet selbst</li><li>losreden</li><li>X: läuft neben der Uhr weiter</li>
+        </ul>
+      </article>
+      <article class="item">
+        <div class="top"><h3>Kein Weckwort mehr nötig</h3><span class="state new">Neu</span></div>
+        <p>Du sprichst einfach los. Das Weckwort „Amo“ gibt es weiter, aber nur zum Einschalten.</p>
+        <span class="say">„Wie spät ist es?“</span>
+      </article>
+    </div>
+  </section>
+
     <section class="release" aria-labelledby="r1016">
     <div class="when">
       <time id="r1016" datetime="2026-10-16">16.10.2026</time>
@@ -396,14 +451,14 @@ footer a { color: var(--ink); text-decoration-color: var(--red); text-underline-
       <article class="item feature">
         <div class="top"><h3>Termine per Sprache direkt in Outlook</h3><span class="state ok">Im Alltag bestätigt</span></div>
         <p>Ein Satz reicht. Amo öffnet den Termin fertig ausgefüllt in Outlook, schreibt eine kurze Beschreibung und speichert ihn nach deinem „Ja“ selbst. Mit „Nur öffnen“ bleibt der Termin offen und du änderst noch etwas.</p>
-        <span class="say">„Amo, mach einen Termin für morgen um 10 mit dem Namen Test.“</span>
+        <span class="say">„Mach einen Termin für morgen um 10 mit dem Namen Test.“</span>
         <ul class="flow" aria-label="Ablauf">
           <li>Satz sagen</li><li>Amo fragt kurz nach</li><li>„Ja“</li><li>steht in Outlook</li>
         </ul>
       </article>
       <article class="item">
-        <div class="top"><h3>Weckwort „Amo“</h3><span class="state new">Neu</span></div>
-        <p>Amo reagiert nur, wenn du ihn ansprichst. Gespräche im Raum lösen nichts aus. Direkt nach seiner Antwort geht es 20 Sekunden ohne Namen weiter.</p>
+        <div class="top"><h3>Weckwort „Amo“</h3><span class="state opt">Optional</span></div>
+        <p>Wer will, schaltet es ein. Dann reagiert Amo nur, wenn du ihn ansprichst. Seit 18.10. ist es standardmäßig aus: Du sprichst einfach los.</p>
         <span class="say">„Amo, wie spät ist es?“</span>
       </article>
       <article class="item">
